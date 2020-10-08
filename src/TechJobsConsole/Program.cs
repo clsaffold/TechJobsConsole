@@ -16,6 +16,7 @@ namespace TechJobsConsole
 
             // Column options
             Dictionary<string, string> columnChoices = new Dictionary<string, string>();
+            columnChoices.Add("name", "Job Title");
             columnChoices.Add("core competency", "Skill");
             columnChoices.Add("employer", "Employer");
             columnChoices.Add("location", "Location");
@@ -63,7 +64,8 @@ namespace TechJobsConsole
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -116,9 +118,22 @@ namespace TechJobsConsole
             return choiceKeys[choiceIdx];
         }
 
-        private static void PrintJobs(List<Dictionary<string, string>> someJobs)
+        public static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            if (someJobs.Count == 0)
+            {
+                Console.WriteLine("No jobs available.");
+            }
+            else
+            {
+                foreach (Dictionary<string, string> dict in someJobs)
+                {
+                    Console.WriteLine("\n----------\n");
+                    foreach (KeyValuePair<string, string> kvp in dict)
+                        Console.WriteLine("{0}: {1}", kvp.Key, kvp.Value);
+                }
+            }
+            Console.WriteLine("\n---------");
         }
     }
 }
