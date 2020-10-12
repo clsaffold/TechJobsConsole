@@ -16,12 +16,12 @@ namespace TechJobsConsole
 
             // Column options
             Dictionary<string, string> columnChoices = new Dictionary<string, string>();
-            columnChoices.Add("name", "Job Title");
+            columnChoices.Add("all", "All");
             columnChoices.Add("core competency", "Skill");
             columnChoices.Add("employer", "Employer");
             columnChoices.Add("location", "Location");
             columnChoices.Add("position type", "Position Type");
-            columnChoices.Add("all", "All");
+
 
             Console.WriteLine("Welcome to LaunchCode's TechJobs App!");
 
@@ -124,16 +124,14 @@ namespace TechJobsConsole
             {
                 Console.WriteLine("No jobs available.");
             }
-            else
+            for (int i = 0; i < someJobs.Count; i++)
             {
-                foreach (Dictionary<string, string> dict in someJobs)
+                Console.WriteLine("\n----------\n");
+                foreach (KeyValuePair<string, string> entry in someJobs[i])
                 {
-                    Console.WriteLine("\n----------\n");
-                    foreach (KeyValuePair<string, string> kvp in dict)
-                        Console.WriteLine("{0}: {1}", kvp.Key, kvp.Value);
+                    Console.WriteLine(entry.Key + ": " + entry.Value);
                 }
             }
-            Console.WriteLine("\n---------");
         }
     }
 }
